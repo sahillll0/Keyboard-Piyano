@@ -1,0 +1,186 @@
+:root {
+    --bg-color: #1a1a1a;
+    --piano-bg: #2c2c2c;
+    --key-white: #f0f0f0;
+    --key-black: #111;
+    --accent-color: #00d2ff;
+    --text-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #2b2b2b 0%, #151210 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    display: none;
+}
+
+#cursor img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 6vh;
+    padding-top: 2rem;
+}
+
+header h1 {
+    font-size: 4.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+    letter-spacing: -1px;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    color: #aaa;
+}
+
+header h2 span {
+    color: var(--accent-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+header h2 span:hover {
+    text-shadow: 0 0 15px var(--accent-color);
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #888;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.presstext {
+    background-color: rgb(133, 128, 128);
+    height: 80px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: 2vh;
+}
+
+.presstext p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.container {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+.piano-container {
+    width: 95%;
+    max-width: 1200px;
+    padding: 20px;
+    background: var(--piano-bg);
+    border-radius: 20px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piano-container-inside {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    background: #000;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.piano-key {
+    flex: 1;
+    height: 100%;
+    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    border-radius: 0 0 5px 5px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow:
+        inset 0 1px 0 #fff,
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.piano-key:active,
+.piano-key.click-btn {
+    transform: translateY(2px);
+    background: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 100%);
+    box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--accent-color);
+}
+
+.piano-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: #333;
+    border-bottom: 1px solid #555;
+}
+
+.piano-btm {
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .piano-container-inside {
+        height: 200px;
+    }
+
+    .piano-btm {
+        font-size: 0.8rem;
+    }
+}
